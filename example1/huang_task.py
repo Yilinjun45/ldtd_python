@@ -56,13 +56,12 @@ plt.ylabel("Transmittance", fontsize=14)
 plt.title("Circular Polarization Transmittance", fontsize=16)
 plt.grid(True)
 plt.legend(fontsize=12)
-# RCP 入射分量相位
-phase_EL_L = np.angle(ex_L)
-phase_ER_L = np.angle(ex_R)
 
-# ———————— 计算相位差 ————————
-# RCP 入射时，L→L 与 R→R 之间的相位差
-delta_phase_R = (phase_EL_L - phase_ER_L) * 180 / np.pi
+
+phase_EL_L = np.angle(EL_L)
+phase_ER_R = np.angle(ER_R)
+
+delta_phase_R = (phase_EL_L - phase_ER_R) * 180 / np.pi
 delta_phase_R = (delta_phase_R + 180) % 360 - 180
 
 # ———————— 绘制相位差随频率的变化 ————————
@@ -74,7 +73,7 @@ plt.title("Circular Polarization Phase Difference", fontsize=16)
 plt.legend(fontsize=12)
 
 # 计算相位差
-tanphi=abs(np.real(ex_L)/np.real(ex_R))
+tanphi=abs(ex_L)/abs(ex_R)
 phi=np.arctan(tanphi) * 180 / np.pi
 plt.figure(3)
 plt.plot(f_R, phi, label="Phi", linewidth=2)
