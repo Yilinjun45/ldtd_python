@@ -58,11 +58,11 @@ plt.grid(True)
 plt.legend(fontsize=12)
 # RCP 入射分量相位
 phase_EL_L = np.angle(ex_L)
-phase_ER_R = np.angle(ex_R)
+phase_ER_L = np.angle(ex_R)
 
 # ———————— 计算相位差 ————————
 # RCP 入射时，L→L 与 R→R 之间的相位差
-delta_phase_R = (phase_EL_L - phase_ER_R) * 180 / np.pi
+delta_phase_R = (phase_EL_L - phase_ER_L) * 180 / np.pi
 delta_phase_R = (delta_phase_R + 180) % 360 - 180
 
 # ———————— 绘制相位差随频率的变化 ————————
@@ -72,8 +72,15 @@ plt.xlabel("频率 f (tHz)", fontsize=14)
 plt.ylabel("相位差 Δφ (°)", fontsize=14)
 plt.title("Circular Polarization Phase Difference", fontsize=16)
 plt.legend(fontsize=12)
-plt.show()
 
+# 计算相位差
+tanphi=abs(np.real(ex_L)/np.real(ex_R))
+phi=np.arctan(tanphi) * 180 / np.pi
+plt.figure(3)
+plt.plot(f_R, phi, label="Phi", linewidth=2)
+plt.xlabel("频率 f (tHz)", fontsize=14)
+plt.ylabel("相位差 ", fontsize=14)
+plt.show()
 # 创建 DataFrame（列包含频率、ER_R 和 EL_R 的幅值与相位）
 wb = Workbook()
 ws = wb.active
