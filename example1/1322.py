@@ -10,7 +10,7 @@ A_values = []
 f_values = []
 
 # 创建 FDTD 会话
-fdtd = lumapi.FDTD(filename='C:\\Users\\18454\\Desktop\\example1.fsp')
+fdtd = lumapi.FDTD(filename='C:\\Users\\18454\\Desktop\1\example1.fsp')
 
 # 运行仿真并获取数据
 for i in range(1, 10, ):
